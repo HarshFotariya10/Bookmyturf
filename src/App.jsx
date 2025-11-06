@@ -1,0 +1,41 @@
+import './App.css'
+import Navbar from './components/navbar'
+import LoginPage from './pages/LoginPage'
+import HomePage from './pages/HomePage'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import SignupPage from './pages/SignupPage'
+import AboutPage from './pages/AboutPage'
+import ContactUs from './pages/ContactUs'
+import Footer from './components/Footer'
+import VerifyEmail from './pages/verify-email'
+import AdminDashboard from './components/admin_dashboard/locations/AdminDashboard'
+// import Location from './components/admin_dashboard/sports/Location'
+// import Location from './components/admin_dashboard/sports/page/Location'
+
+function App() {
+  const location = useLocation();
+
+  // Define paths where you want to hide Navbar and Footer
+  const hideLayout = location.pathname.startsWith('/admin');
+
+  return (
+    <>
+      {!hideLayout && <Navbar />}
+      <div className="">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          {/* <Route path='location/:id' element={<Location/>}/> */}
+        </Routes>
+      </div>
+     
+    </>
+  )
+}
+
+export default App
